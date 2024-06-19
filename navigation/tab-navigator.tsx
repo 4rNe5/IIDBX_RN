@@ -2,10 +2,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StackScreenProps } from '@react-navigation/stack';
 
 import { RootStackParamList } from '.';
-import { HeaderButton } from '../components/HeaderButton';
 import { TabBarIcon } from '../components/TabBarIcon';
-import One from '../screens/one';
-import Two from '../screens/two';
+
+import SearchSong from '../screens/SearchSong';
+import VersionSong from "../screens/VersionSong";
+import AllSong from "../screens/AllSong";
 
 const Tab = createBottomTabNavigator();
 
@@ -15,23 +16,45 @@ export default function TabLayout({ navigation }: Props) {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: 'black',
+        tabBarStyle: {
+          backgroundColor: '#e1e1e1',
+        },
+        tabBarActiveTintColor: '#3458ff',
       }}>
       <Tab.Screen
-        name="One"
-        component={One}
+        name="SearchSong"
+        component={SearchSong}
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => <HeaderButton onPress={() => navigation.navigate('Modal')} />,
+          headerShown: false,
+          title: '악곡 검색',
+          tabBarLabelStyle: {
+            fontSize: 11,
+          },
+          tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
         }}
       />
       <Tab.Screen
         name="Two"
-        component={Two}
+        component={VersionSong}
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          headerShown: false,
+          title: '버전별 악곡',
+          tabBarLabelStyle: {
+            fontSize: 11,
+          },
+          tabBarIcon: ({ color }) => <TabBarIcon name="filter" color={color} />,
+        }}
+      />
+      <Tab.Screen
+        name="Three"
+        component={AllSong}
+        options={{
+          headerShown: false,
+          title: '모든 악곡',
+          tabBarLabelStyle: {
+            fontSize: 11,
+          },
+          tabBarIcon: ({ color }) => <TabBarIcon name="th-list" color={color} />,
         }}
       />
     </Tab.Navigator>

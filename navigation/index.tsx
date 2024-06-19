@@ -2,7 +2,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import TabNavigator from './tab-navigator';
-import Modal from '../screens/modal';
+import { fontLists } from '../assets/fonts/fontLists';
+import { useFonts } from "expo-font";
+import DevLoadingView from "expo/build/environment/DevLoadingView";
+import { Text } from "react-native";
 
 export type RootStackParamList = {
   TabNavigator: undefined;
@@ -12,6 +15,11 @@ export type RootStackParamList = {
 const Stack = createStackNavigator<RootStackParamList>();
 
 export default function RootStack() {
+  const [fontsLoaded] = useFonts(fontLists);
+  if (!fontsLoaded) {
+    return <Text> 정보 로딩중... </Text>;
+  }
+  // @ts-ignore
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="TabNavigator">
@@ -19,11 +27,6 @@ export default function RootStack() {
           name="TabNavigator"
           component={TabNavigator}
           options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Modal"
-          component={Modal}
-          options={{ presentation: 'modal', headerLeft: () => null }}
         />
       </Stack.Navigator>
     </NavigationContainer>
