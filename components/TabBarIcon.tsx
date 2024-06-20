@@ -11,5 +11,5 @@ export const TabBarIcon = (props: {
 export const styles = StyleSheet.create({
   tabBarIcon: {
     marginBottom: -3,
-  },
+  }
 });

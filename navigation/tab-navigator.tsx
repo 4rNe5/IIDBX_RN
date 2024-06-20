@@ -29,6 +29,7 @@ export default function TabLayout({ navigation }: Props) {
           title: '악곡 검색',
           tabBarLabelStyle: {
             fontSize: 11,
+            paddingBottom: 3,
           },
           tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
         }}
@@ -41,6 +42,7 @@ export default function TabLayout({ navigation }: Props) {
           title: '버전별 악곡',
           tabBarLabelStyle: {
             fontSize: 11,
+            paddingBottom: 3,
           },
           tabBarIcon: ({ color }) => <TabBarIcon name="filter" color={color} />,
         }}
@@ -53,6 +55,7 @@ export default function TabLayout({ navigation }: Props) {
           title: '모든 악곡',
           tabBarLabelStyle: {
             fontSize: 11,
+            paddingBottom: 3,
           },
           tabBarIcon: ({ color }) => <TabBarIcon name="th-list" color={color} />,
         }}

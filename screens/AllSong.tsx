@@ -9,7 +9,7 @@ import PretendardText from "../components/PretendardText";
 export default function AllSong() {
   return (
     <View style={styles.containter}>
-      <PretendardText fontSize={15} fontWeight={'Bold'}> IIDX 전체 악곡 검색</PretendardText>
+      <PretendardText fontsize={18} fontWeight={'Light'}> IIDX 전체 악곡 검색</PretendardText>
     </View>
   );
 }
