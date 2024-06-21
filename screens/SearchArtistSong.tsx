@@ -9,7 +9,7 @@ import { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import { StatusBar } from "expo-status-bar";
 
-export default function SearchSong() {
+export default function SearchArtistSong() {
 
   const [searchKeyword, setSearchKeyword] = useState('');
 
@@ -22,11 +22,11 @@ export default function SearchSong() {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     style={styles.containter}>
       <StatusBar style="dark"/>
-        <View style={styles.title_container}>
-          <FontAwesome style={styles.title_icon} name="search" size={65} color="black" />
-          <PretendardText fontsize={32} fontWeight={'Bold'}> IIDX 악곡 검색 </PretendardText>
-        </View>
-          <SearchBar placeholder="악곡명을 입력하세요." searchKeyword={searchKeyword} onSearch={handleSearch} onSearchButtonPress={() => {}} />
+      <View style={styles.title_container}>
+        <FontAwesome style={styles.title_icon} name="search" size={65} color="black" />
+        <PretendardText fontsize={32} fontWeight={'Bold'}> 아티스트별 악곡 검색 </PretendardText>
+      </View>
+          <SearchBar placeholder="아티스트를 입력하세요." searchKeyword={searchKeyword} onSearch={handleSearch} onSearchButtonPress={() => {}} />
     </KeyboardAvoidingView>
   );
 }

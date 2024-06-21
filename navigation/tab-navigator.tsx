@@ -7,6 +7,8 @@ import { TabBarIcon } from '../components/TabBarIcon';
 import SearchSong from '../screens/SearchSong';
 import VersionSong from "../screens/VersionSong";
 import AllSong from "../screens/AllSong";
+import SearchArtistSong from "../screens/SearchArtistSong";
+import { Octicons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
@@ -26,12 +28,25 @@ export default function TabLayout({ navigation }: Props) {
         component={SearchSong}
         options={{
           headerShown: false,
-          title: '악곡 검색',
+          title: '악곡명 검색',
           tabBarLabelStyle: {
             fontSize: 11,
             paddingBottom: 3,
           },
-          tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="music" color={color} />,
+        }}
+      />
+      <Tab.Screen
+        name="SearchArtistSong"
+        component={SearchArtistSong}
+        options={{
+          headerShown: false,
+          title: '아티스트별 검색',
+          tabBarLabelStyle: {
+            fontSize: 11,
+            paddingBottom: 3,
+          },
+          tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
         }}
       />
       <Tab.Screen
@@ -44,7 +59,7 @@ export default function TabLayout({ navigation }: Props) {
             fontSize: 11,
             paddingBottom: 3,
           },
-          tabBarIcon: ({ color }) => <TabBarIcon name="filter" color={color} />,
+          tabBarIcon: ({ color }) => <Octicons name="versions" size={21} color={color} />,
         }}
       />
       <Tab.Screen
