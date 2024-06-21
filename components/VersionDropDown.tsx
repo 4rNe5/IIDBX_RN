@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import { Octicons } from "@expo/vector-icons";
 
 const data = [
   { label: 'Item 1', value: '1' },
@@ -21,8 +22,8 @@ const DropdownComponent = () => {
   const renderLabel = () => {
     if (value || isFocus) {
       return (
-        <Text style={[styles.label, isFocus && { color: 'blue' }]}>
-          Dropdown label
+        <Text style={[styles.label, isFocus && { color: '#3458ff' }]}>
+          선택된 IIDX 버전
         </Text>
       );
     }
@@ -33,7 +34,7 @@ const DropdownComponent = () => {
     <View style={styles.container}>
       {renderLabel()}
       <Dropdown
-        style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
+        style={[styles.dropdown, isFocus && { borderColor: '#3458ff' }]}
         placeholderStyle={styles.placeholderStyle}
         selectedTextStyle={styles.selectedTextStyle}
         inputSearchStyle={styles.inputSearchStyle}
@@ -43,22 +44,18 @@ const DropdownComponent = () => {
         maxHeight={300}
         labelField="label"
         valueField="value"
-        placeholder={!isFocus ? 'Select item' : '...'}
-        searchPlaceholder="Search..."
+        placeholder={!isFocus ? '버전 선택' : '...'}
+        searchPlaceholder="버전명 검색"
         value={value}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         onChange={item => {
+          // @ts-ignore
           setValue(item.value);
           setIsFocus(false);
         }}
         renderLeftIcon={() => (
-          <AntDesign
-            style={styles.icon}
-            color={isFocus ? 'blue' : 'black'}
-            name="Safety"
-            size={20}
-          />
+          <Octicons style={styles.icon} name="versions" size={20} color={isFocus ? '#3458ff' : 'black'} />
         )}
       />
     </View>
@@ -69,13 +66,15 @@ export default DropdownComponent;
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    backgroundColor: 'white',
+    width: '95%',
     padding: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   dropdown: {
     height: 50,
     borderColor: 'gray',
+    width: '95%',
     borderWidth: 0.5,
     borderRadius: 8,
     paddingHorizontal: 8,
@@ -85,18 +84,22 @@ const styles = StyleSheet.create({
   },
   label: {
     position: 'absolute',
-    backgroundColor: 'white',
-    left: 22,
+    backgroundColor: '#f4f4f4',
+    left: 48,
     top: 8,
     zIndex: 999,
     paddingHorizontal: 8,
-    fontSize: 14,
+    fontSize: 12,
+    fontFamily: 'Pretendard-SemiBold',
   },
   placeholderStyle: {
     fontSize: 16,
+    paddingLeft: 5,
+    fontFamily: 'Pretendard-Medium',
   },
   selectedTextStyle: {
     fontSize: 16,
+    fontFamily: 'Pretendard-Medium',
   },
   iconStyle: {
     width: 20,
@@ -105,5 +108,6 @@ const styles = StyleSheet.create({
   inputSearchStyle: {
     height: 40,
     fontSize: 16,
+    fontFamily: 'Pretendard-Medium',
   },
 });

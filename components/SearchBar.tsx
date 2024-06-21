@@ -13,12 +13,12 @@ export default function SearchBar ({ placeholder, searchKeyword, onSearch, onSea
   return (
     <View style={{ backgroundColor: '#e3e3e3', flexDirection: 'row', alignItems: 'center', paddingLeft: 8, paddingRight: 8, paddingVertical: 6, borderRadius: 35, margin: 15 }}>
       <TextInput
-        style={{ flex: 1, borderRadius: 5, padding: 9, marginRight: 7, fontFamily: 'Pretendard-SemiBold', fontSize: 17 }}
+        style={{ flex: 1, borderRadius: 5, padding: 9, marginRight: 7, fontFamily: 'Pretendard-SemiBold', fontSize: 16 }}
         placeholder={placeholder}
         value={searchKeyword}
         onChangeText={onSearch}
       />
-      <TouchableOpacity onPress={onSearchButtonPress} style={{ padding: 13, backgroundColor: 'blue', borderRadius: 50 }}>
+      <TouchableOpacity onPress={onSearchButtonPress} style={{ padding: 13, backgroundColor: '#3458ff', borderRadius: 50 }}>
         <FontAwesome5 name="compact-disc" size={25} color="white" />
       </TouchableOpacity>
     </View>
