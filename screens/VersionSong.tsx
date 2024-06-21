@@ -5,11 +5,13 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import axios from 'axios';
 import { Alert, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import PretendardText from "../components/PretendardText";
+import VersionDropDown from "../components/VersionDropDown";
 
 export default function VersionSong() {
   return (
     <View style={styles.containter}>
       <PretendardText fontsize={18} fontWeight={'Light'}> IIDX 버전별 악곡 검색</PretendardText>
+      <VersionDropDown/>
     </View>
   );
 }
@@ -19,6 +21,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#e1e1e1',
+    backgroundColor: '#f4f4f4',
   },
 });
