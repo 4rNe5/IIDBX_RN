@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'Pretendard-Light',
     color: '#555',
+    paddingBottom: 6,
   },
   version: {
     fontSize: 16,
