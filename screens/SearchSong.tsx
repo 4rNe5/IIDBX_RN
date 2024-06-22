@@ -1,20 +1,27 @@
+import React, { useState } from "react";
+import { View, Text, StyleSheet, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import axios from 'axios';
-import { Alert, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View, KeyboardAvoidingView } from "react-native";
 import PretendardText from "../components/PretendardText";
-import { useState } from "react";
 import SearchBar from "../components/SearchBar";
-import { StatusBar } from "expo-status-bar";
+import SongVersionInfoBlock from "../components/SongVersionInfoBlock";
+import axios from "axios";
 
 export default function SearchSong() {
-  const [searchKeyword, setSearchKeyword] = useState('');
+  const [searchKeyword, setSearchKeyword] = React.useState('');
+  const [SearchedData, setSearchedData] = useState([]);
 
   const handleSearch = (text: string) => {
-    setSearchKeyword(prevSearchKeyword => text);
-    // 검색 기능 구현
+    setSearchKeyword(text);
+    console.log(text);
+    axios.get(`http://140.245.67.119:8080/iidx/get-nameOrArtistDetail?name=${text}`)
+      .then(response => {
+        console.log(response.data);
+        setSearchedData(response.data);
+      })
+      .catch(error => {
+        // Handle error
+        console.error(error);
+      });
   };
 
   return (
@@ -22,12 +29,26 @@ export default function SearchSong() {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <StatusBar style="dark" />
-        <View style={styles.title_container}>
-          <FontAwesome style={styles.title_icon} name="search" size={65} color="black" />
-          <PretendardText fontsize={32} fontWeight={'Bold'}>IIDX 악곡 검색</PretendardText>
-        </View>
-        <SearchBar placeholder="악곡명을 입력하세요." searchKeyword={searchKeyword} onSearch={handleSearch} onSearchButtonPress={() => {}} />
+        <FontAwesome style={styles.title_icon} name="search" size={65} color="black" />
+        <PretendardText fontsize={32} fontWeight={'Bold'} style={styles.title}>IIDX 악곡 검색</PretendardText>
+        <SearchBar placeholder="악곡명을 입력하세요." searchKeyword={searchKeyword} onSearch={setSearchKeyword} onSearchButtonPress={() => {handleSearch(searchKeyword)}} />
+        {
+          SearchedData.map((data, index) => (
+            <SongVersionInfoBlock
+              key={index}
+              songName={data.name}
+              songVersion={data.version}
+              artistName={data.artist}
+              songGenre={data.genre}
+              songBPM={data.bpm}
+              beg={data.beg}
+              spn={data.spn}
+              sph={data.sph}
+              spa={data.spa}
+              spl={data.spl}
+            />
+          ))
+        }
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -40,16 +61,17 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 4,
+    paddingVertical: 20,
+    paddingHorizontal: 20,
   },
-  title_container: {
-    alignItems: 'center',
+  title: {
     paddingBottom: 15,
-    marginTop: -330,
+    textAlign: 'center',
   },
   title_icon: {
+    alignSelf: 'center',
     paddingBottom: 15,
-  }
+    paddingTop: 90,
+  },
 });
+

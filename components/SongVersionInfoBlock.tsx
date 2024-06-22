@@ -15,42 +15,18 @@ type SongInfoBlockProps = {
 };
 
 const versionNames = [
-  "1st style",
-  "substream",
-  "2nd style",
-  "3rd style",
-  "4th style",
-  "5th style",
-  "6th style",
-  "7th style",
-  "8th style",
-  "9th style",
-  "10th style",
-  "11 IIDX RED",
-  "12 HAPPY SKY",
-  "13 DistorteD",
-  "14 GOLD",
-  "15 DJ TROOPERS",
-  "16 EMPRESS",
-  "17 SIRIUS",
-  "18 Resort Anthem",
-  "19 Lincle",
-  "20 tricoro",
-  "21 SPADA",
-  "22 PENDUAL",
-  "23 copula",
-  "24 SINOBUZ",
-  "25 CANNON BALLERS",
-  "26 Rootage",
-  "27 HEROIC VERSE",
-  "28 BISTROVER",
-  "29 CastHour",
-  "30 RESIDENT",
-  "31 EPOLIS"
+  "1st style", "substream", "2nd style", "3rd style", "4th style",
+  "5th style", "6th style", "7th style", "8th style", "9th style",
+  "10th style", "11 IIDX RED", "12 HAPPY SKY", "13 DistorteD",
+  "14 GOLD", "15 DJ TROOPERS", "16 EMPRESS", "17 SIRIUS",
+  "18 Resort Anthem", "19 Lincle", "20 tricoro", "21 SPADA",
+  "22 PENDUAL", "23 copula", "24 SINOBUZ", "25 CANNON BALLERS",
+  "26 Rootage", "27 HEROIC VERSE", "28 BISTROVER", "29 CastHour",
+  "30 RESIDENT", "31 EPOLIS"
 ];
 
 const getVersionName = (versionNumber: number) => {
-  return versionNames[versionNumber] || "Unknown Version";
+  return versionNames[versionNumber - 1] || "Unknown Version";
 };
 
 const SongVersionInfoBlock = ({ songName, songVersion, artistName, songGenre, songBPM, beg, spn, sph, spa, spl }: SongInfoBlockProps) => {
@@ -61,7 +37,7 @@ const SongVersionInfoBlock = ({ songName, songVersion, artistName, songGenre, so
       <View style={styles.headerContainer}>
         <Text style={styles.title}>{songName}</Text>
         <Text style={styles.subtitle}>{artistName}</Text>
-        <Text style={styles.version}>{versionName}</Text>
+        <Text style={styles.version}>수록 버전 : {versionName}</Text>
       </View>
       <View style={styles.infoContainer}>
         <View style={styles.infoBox}>
@@ -70,7 +46,7 @@ const SongVersionInfoBlock = ({ songName, songVersion, artistName, songGenre, so
         </View>
         <View style={styles.infoBox}>
           <Text style={styles.infoText}>BPM</Text>
-          <Text style={styles.infoValue}>{songBPM}</Text>
+          <Text style={styles.BPMinfoValue}>{songBPM}</Text>
         </View>
       </View>
       <View style={styles.difficultyContainer}>
@@ -107,81 +83,85 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#f7f7f7',
     borderRadius: 20,
-    margin: 20,
     padding: 20,
-    display: 'flex',
-    flexDirection: 'column',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
-  },
-  headerContainer: {
     marginBottom: 20,
   },
+  headerContainer: {
+    marginBottom: 10,
+    marginLeft: 7,
+    marginTop: 6,
+  },
   title: {
-    fontSize: 28,
+    fontSize: 22,
     fontFamily: 'Pretendard-Bold',
     marginBottom: 5,
   },
   subtitle: {
-    fontSize: 20,
+    fontSize: 18,
     fontFamily: 'Pretendard-Light',
     color: '#555',
   },
   version: {
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: 'Pretendard-Regular',
     color: '#777',
+    marginBottom: 10,
   },
   infoContainer: {
-    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 15,
+    marginBottom: 10,
   },
   infoBox: {
     backgroundColor: '#e0e0e0',
     borderRadius: 15,
-    padding: 10,
+    padding: 12,
+    margin: 5,
     flex: 1,
     marginHorizontal: 5,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   infoText: {
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: 'Pretendard-SemiBold',
     paddingBottom: 3,
     color: '#333',
   },
+  BPMinfoValue: {
+    fontSize: 18,
+    fontFamily: 'Pretendard-Regular',
+    color: '#000',
+  },
   infoValue: {
-    fontSize: 17,
+    fontSize: 15,
     fontFamily: 'Pretendard-Regular',
     color: '#000',
   },
   difficultyContainer: {
-    display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
   },
   difficultyRow: {
-    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 6,
   },
   difficultyBox: {
     borderRadius: 15,
-    padding: 15,
+    padding: 12,
     margin: 5,
     flex: 1,
     alignItems: 'center',
   },
   difficultyText: {
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: 'Pretendard-Bold',
-    paddingBottom: 3,
     color: '#fff',
+    paddingBottom: 3,
   },
   difficultyValue: {
     fontSize: 18,

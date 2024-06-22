@@ -74,7 +74,9 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
   headerContainer: {
+    marginTop: 6,
     marginBottom: 20,
+    paddingLeft: 12,
   },
   title: {
     fontSize: 28,
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
   infoText: {
     fontSize: 16,
     fontFamily: 'Pretendard-SemiBold',
-    paddingBottom: 3,
+    marginBottom: 3,
     color: '#333',
   },
   infoValue: {

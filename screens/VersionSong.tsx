@@ -34,7 +34,7 @@ export default function VersionSong() {
         <FontAwesome style={styles.title_icon} name="search" size={65} color="black" />
         <PretendardText style={{marginBottom: 10}} fontsize={32} fontWeight={'Bold'}> IIDX 버전별 악곡 </PretendardText>
         <VersionDropDown onValueChange={handleVersionChange} />
-        <Divider style={{width: '85%'}} color="black"  width={0.85}  inset={true} insetType="middle" />
+        {/*<Divider style={{width: '85%'}} color="black"  width={0.85}  inset={true} insetType="middle" />*/}
       </View>
       {
         versionData.map((data, index) => (
