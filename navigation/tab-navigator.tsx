@@ -6,7 +6,6 @@ import { TabBarIcon } from '../components/TabBarIcon';
 
 import SearchSong from '../screens/SearchSong';
 import VersionSong from "../screens/VersionSong";
-import AllSong from "../screens/AllSong";
 import SearchArtistSong from "../screens/SearchArtistSong";
 import { Octicons } from "@expo/vector-icons";
 
@@ -60,19 +59,6 @@ export default function TabLayout({ navigation }: Props) {
             paddingBottom: 3,
           },
           tabBarIcon: ({ color }) => <Octicons name="versions" size={21} color={color} />,
-        }}
-      />
-      <Tab.Screen
-        name="Three"
-        component={AllSong}
-        options={{
-          headerShown: false,
-          title: '모든 악곡',
-          tabBarLabelStyle: {
-            fontSize: 11,
-            paddingBottom: 3,
-          },
-          tabBarIcon: ({ color }) => <TabBarIcon name="th-list" color={color} />,
         }}
       />
     </Tab.Navigator>
