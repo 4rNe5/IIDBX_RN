@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 
 type SongInfoBlockProps = {
   songName: string;
+  songVersion: number;
   artistName: string;
   songGenre: string;
   songBPM: string;
@@ -13,12 +14,54 @@ type SongInfoBlockProps = {
   spl: string;
 };
 
-const SongInfoBlock = ({ songName, artistName, songGenre, songBPM, beg, spn, sph, spa, spl }: SongInfoBlockProps) => {
+const versionNames = [
+  "1st style",
+  "substream",
+  "2nd style",
+  "3rd style",
+  "4th style",
+  "5th style",
+  "6th style",
+  "7th style",
+  "8th style",
+  "9th style",
+  "10th style",
+  "11 IIDX RED",
+  "12 HAPPY SKY",
+  "13 DistorteD",
+  "14 GOLD",
+  "15 DJ TROOPERS",
+  "16 EMPRESS",
+  "17 SIRIUS",
+  "18 Resort Anthem",
+  "19 Lincle",
+  "20 tricoro",
+  "21 SPADA",
+  "22 PENDUAL",
+  "23 copula",
+  "24 SINOBUZ",
+  "25 CANNON BALLERS",
+  "26 Rootage",
+  "27 HEROIC VERSE",
+  "28 BISTROVER",
+  "29 CastHour",
+  "30 RESIDENT",
+  "31 EPOLIS"
+];
+
+const getVersionName = (versionNumber: number) => {
+  return versionNames[versionNumber] || "Unknown Version";
+};
+
+const SongVersionInfoBlock = ({ songName, songVersion, artistName, songGenre, songBPM, beg, spn, sph, spa, spl }: SongInfoBlockProps) => {
+  const versionName = getVersionName(songVersion);
+
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.title}>{songName}</Text>
         <Text style={styles.subtitle}>{artistName}</Text>
+        <Text style={styles.version}>{versionName}</Text>
       </View>
       <View style={styles.infoContainer}>
         <View style={styles.infoBox}>
@@ -86,6 +129,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Pretendard-Light',
     color: '#555',
   },
+  version: {
+    fontSize: 18,
+    fontFamily: 'Pretendard-Regular',
+    color: '#777',
+  },
   infoContainer: {
     display: 'flex',
     flexDirection: 'row',
@@ -142,4 +190,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SongInfoBlock;
+export default SongVersionInfoBlock;
