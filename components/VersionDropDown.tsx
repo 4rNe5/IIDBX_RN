@@ -1,23 +1,36 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
-import AntDesign from '@expo/vector-icons/AntDesign';
 import { Octicons } from "@expo/vector-icons";
 
 const data = [
-  { label: 'Item 1', value: '1' },
-  { label: 'Item 2', value: '2' },
-  { label: 'Item 3', value: '3' },
-  { label: 'Item 4', value: '4' },
-  { label: 'Item 5', value: '5' },
-  { label: 'Item 6', value: '6' },
-  { label: 'Item 7', value: '7' },
-  { label: 'Item 8', value: '8' },
+  { label: '1st Style', value: '0' },
+  { label: 'substream', value: '1' },
+  { label: '2nd Style', value: '2' },
+  { label: '3rd Style', value: '3' },
+  { label: '4th Style', value: '4' },
+  { label: '5th Style', value: '5' },
+  { label: '6th Style', value: '6' },
+  { label: '7th Style', value: '7' },
+  { label: '8th Style', value: '8' },
+  { label: '9th Style', value: '9' },
+  { label: '10th Style', value: '10' },
+  { label: '11 IIDX RED', value: '8' },
 ];
 
-const DropdownComponent = () => {
+type VersionDropDownProps = {
+  onValueChange: any;
+};
+
+const DropdownComponent = ({ onValueChange }: VersionDropDownProps) => {
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
+
+  const handleValueChange = (item : any) => {
+    setValue(item.value);
+    setIsFocus(false);
+    onValueChange(item.value);
+  };
 
   const renderLabel = () => {
     if (value || isFocus) {
@@ -49,11 +62,7 @@ const DropdownComponent = () => {
         value={value}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
-        onChange={item => {
-          // @ts-ignore
-          setValue(item.value);
-          setIsFocus(false);
-        }}
+        onChange={handleValueChange}
         renderLeftIcon={() => (
           <Octicons style={styles.icon} name="versions" size={20} color={isFocus ? '#3458ff' : 'black'} />
         )}
