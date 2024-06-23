@@ -7,7 +7,8 @@ import { TabBarIcon } from '../components/TabBarIcon';
 import SearchSong from '../screens/SearchSong';
 import VersionSong from "../screens/VersionSong";
 import SearchArtistSong from "../screens/SearchArtistSong";
-import { Octicons } from "@expo/vector-icons";
+import { Octicons, FontAwesome6 } from "@expo/vector-icons";
+import ScoreView from "../screens/ScoreView";
 
 const Tab = createBottomTabNavigator();
 
@@ -49,7 +50,7 @@ export default function TabLayout({ navigation }: Props) {
         }}
       />
       <Tab.Screen
-        name="Two"
+        name="VersionSong"
         component={VersionSong}
         options={{
           headerShown: false,
@@ -59,6 +60,19 @@ export default function TabLayout({ navigation }: Props) {
             paddingBottom: 3,
           },
           tabBarIcon: ({ color }) => <Octicons name="versions" size={21} color={color} />,
+        }}
+      />
+      <Tab.Screen
+        name="ScoreView"
+        component={ScoreView}
+        options={{
+          headerShown: false,
+          title: '성과 기록',
+          tabBarLabelStyle: {
+            fontSize: 11,
+            paddingBottom: 3,
+          },
+          tabBarIcon: ({ color }) => <FontAwesome6 name="chart-simple" size={21} color={color} />,
         }}
       />
     </Tab.Navigator>
