@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { Text, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { FontAwesome, FontAwesome6 } from '@expo/vector-icons';
 import PretendardText from "../components/PretendardText";
-import { StatusBar } from "expo-status-bar";
-import axios from 'axios';
-import { Link, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { ScoreStackParamList } from "../navigation/ScoreStack";
+import { RootStackParamList } from "../navigation";
 
-type ScreenNavigationProps = StackNavigationProp<ScoreStackParamList, 'ScoreView'>;
+type ScreenNavigationProps = StackNavigationProp<RootStackParamList, 'ScoreView'>;
 
 export default function ScoreView() {
 
@@ -45,19 +44,6 @@ const styles = StyleSheet.create({
   title_icon: {
     marginLeft: 10,
     paddingBottom: 15,
-  },
-  fab: {
-    zIndex: 1,
-    position: 'absolute',
-    width: 56,
-    height: 56,
-    alignItems: 'center',
-    justifyContent: 'center',
-    right: 20,
-    bottom: 10,
-    backgroundColor: '#03A9F4',
-    borderRadius: 30,
-    elevation: 8,
   },
   addButton: {
     flexDirection: 'row',
