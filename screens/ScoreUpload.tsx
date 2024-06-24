@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import { ScrollView, StyleSheet, TextInput, View, Text, TouchableOpacity } from "react-native";
 import { FontAwesome6 } from '@expo/vector-icons';
 import PretendardText from "../components/PretendardText";
+import axios from "axios";
+import { RootStackParamList } from "../navigation";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { CommonActions, useNavigation } from "@react-navigation/native";
 
-const ScoreUpload = () => {
+type ScreenNavigationProps = StackNavigationProp<RootStackParamList, 'ScoreView'>;
+
+export default function ScoreUpload() {
   const [userName, setUserName] = useState('');
   const [songName, setSongName] = useState('');
   const [exScore, setExScore] = useState('');
@@ -14,7 +20,9 @@ const ScoreUpload = () => {
   const difficulties = ['BEG', 'SPN', 'SPH', 'SPA', 'SPL'];
   const difficultyColors = ['#46c546', '#6495ed', '#f6ab20', '#ff3434', '#fa298c'];
   const ranks = ['MAX', 'AAA', 'AA', 'A', 'B', 'C', 'D', 'F'];
-  const gauges = ['Hard', 'EX Hard', 'Assistant Clear', 'Easy Clear', 'Normal Clear'];
+  const gauges = ['Hard', 'EX_Hard', 'Assistant_Clear', 'Easy_Clear', 'Normal_Clear'];
+
+  const navigation = useNavigation<ScreenNavigationProps>();
 
   const requestData = {
     name: songName,
@@ -25,10 +33,28 @@ const ScoreUpload = () => {
     gauge: selectedGauge,
   };
 
+  const handleSubmit = () => {
+    console.log(requestData);
+    axios.post('http://140.245.67.119:8080/user/create-userRank', requestData)
+      .then((response) => {
+        console.log(response.data);
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [
+              { name: 'TabNavigator' }
+            ],
+          }))
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.title_container}>
-        <FontAwesome6 style={styles.title_icon} name="chart-simple" size={65} color="black" />
+        <FontAwesome6 style={styles.title_icon} name="chart-simple" size={70} color="black" />
         <PretendardText style={{ marginBottom: 10 }} fontsize={32} fontWeight={'Bold'}>플레이 성과 업로드</PretendardText>
       </View>
 
@@ -118,7 +144,7 @@ const ScoreUpload = () => {
       </View>
 
       <View style={styles.saveButtonContainer}>
-        <TouchableOpacity style={styles.saveButton} onPress={() => console.log(requestData)}>
+        <TouchableOpacity style={styles.saveButton} onPress={() => handleSubmit()}>
           <Text style={styles.saveButtonText}>기록 저장하기</Text>
         </TouchableOpacity>
       </View>
@@ -173,7 +199,7 @@ const styles = StyleSheet.create({
     minWidth: 100, // Adjust as needed
   },
   rankButton: {
-    backgroundColor: '#34aaff',
+    backgroundColor: '#3458ff',
     borderRadius: 15,
     paddingVertical: 10,
     paddingHorizontal: 15,
@@ -219,4 +245,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ScoreUpload;

@@ -15,7 +15,9 @@ const data = [
   { label: '8th Style', value: '8' },
   { label: '9th Style', value: '9' },
   { label: '10th Style', value: '10' },
-  { label: '11 IIDX RED', value: '8' },
+  { label: '11 IIDX RED', value: '11' },
+  { label: '12 HAPPY SKY', value: '12' },
+  { label: '13 DistorteD', value: '13' },
 ];
 
 type VersionDropDownProps = {
