@@ -17,7 +17,7 @@ export default function VersionSong() {
   const handleVersionChange = (value : number) => {
     console.log(value);
     setValue(value);
-    axios.get(`http://140.245.67.119:8080/iidx/get-version?version=${value}`)
+    axios.get(`${process.env.API_URL}/iidx/get-version?version=${value}`)
       .then(response => {
         console.log(response.data);
         setVersionData(response.data);

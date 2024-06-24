@@ -17,9 +17,8 @@ export default function ScoreView() {
   const [value, setValue] = useState(0);
   const [playData, setPlayData] = useState([]);
 
-
   const getAllPlayData = () => {
-    axios.get('http://140.245.67.119:8080/user/get-AllUserRank').then((response) => {
+    axios.get(`${process.env.API_URL}/user/get-AllUserRank`).then((response) => {
       setPlayData(response.data);
       setPlayData(response.data);
     })

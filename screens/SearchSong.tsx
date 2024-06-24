@@ -13,7 +13,7 @@ export default function SearchSong() {
   const handleSearch = (text: string) => {
     setSearchKeyword(text);
     console.log(text);
-    axios.get(`http://140.245.67.119:8080/iidx/get-nameOrArtistDetail?name=${text}`)
+    axios.get(`${process.env.API_URL}/iidx/get-nameOrArtistDetail?name=${text}`)
       .then(response => {
         console.log(response.data);
         setSearchedData(response.data);

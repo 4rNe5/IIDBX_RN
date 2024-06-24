@@ -35,7 +35,7 @@ export default function ScoreUpload() {
 
   const handleSubmit = () => {
     console.log(requestData);
-    axios.post('http://140.245.67.119:8080/user/create-userRank', requestData)
+    axios.post('${process.env.API_URL}/user/create-userRank', requestData)
       .then((response) => {
         console.log(response.data);
         navigation.dispatch(
