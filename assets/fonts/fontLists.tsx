@@ -8,4 +8,5 @@ export const fontLists = {
     'Pretendard-Light': require('./Pretendard-Light.otf'),
     'Pretendard-ExtraLight': require('./Pretendard-ExtraLight.otf'),
     'Pretendard-Thin': require('./Pretendard-Thin.otf'),
+    'NeoDunggeunmoPro': require('./NeoDunggeunmoPro-Regular.ttf'),
 };

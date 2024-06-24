@@ -13,6 +13,7 @@ type SongInfoBlockProps = {
   spl: string;
 };
 
+
 const SongInfoBlock = ({ songName, artistName, songGenre, songBPM, beg, spn, sph, spa, spl }: SongInfoBlockProps) => {
   return (
     <View style={styles.container}>
